@@ -58,7 +58,8 @@ What is the ID of your seat?
 
 """
 
-
+"""
+# Functional, but more complex parse function.
 def parse(seat_id):
 	row_idx = seat_id[0:7]
 	seat_idx = seat_id[7:]
@@ -81,24 +82,22 @@ def parse(seat_id):
 	if seat_idx[2] == "R":
 		seat_val = hi
 	return row_val * 8 + seat_val
+"""
 	
-def parse2(seat_id):
-	row_idx = seat_id[0:7]
-	seat_idx = seat_id[7:]
-	seat_idx = seat_idx.replace("R","1").replace("L","0")
-	row_idx = row_idx.replace("F","0").replace("B","1")
+def parse(seat_id):
+	seat_idx = seat_id[7:].replace("R","1").replace("L","0")
+	row_idx  = seat_id[0:7].replace("F","0").replace("B","1")
 	return int(row_idx,2) * 8 + int(seat_idx,2)
 
 if __name__ == "__main__":
 
 	# Part 1 Solution
-	
 	with open("day05_input", 'r') as infile:
-		print(max([parse2(line) for line in infile.readlines()]))
+		print(max([parse(line) for line in infile.readlines()]))
 
 	# Part 2 Solution
 	with open("day05_input", 'r') as infile:
-		all_ids = set([parse2(line) for line in infile.readlines()])
+		all_ids = set([parse(line) for line in infile.readlines()])
 		front = min(all_ids)
 		back  = max(all_ids)
 		avail = set([i for i in range(front,back)])
