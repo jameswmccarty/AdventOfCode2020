@@ -98,11 +98,9 @@ if __name__ == "__main__":
 
 	# Part 2 Solution
 	with open("day05_input", 'r') as infile:
-		all_ids = [parse2(line) for line in infile.readlines()]
+		all_ids = set([parse2(line) for line in infile.readlines()])
 		front = min(all_ids)
 		back  = max(all_ids)
 		avail = set([i for i in range(front,back)])
-		for seat in all_ids:
-			avail.discard(seat)
-		print(avail.pop())
+		print(avail.difference(all_ids).pop())
 
