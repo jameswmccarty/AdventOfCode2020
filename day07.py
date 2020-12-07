@@ -120,11 +120,7 @@ if __name__ == "__main__":
 		for line in infile.readlines():
 			parse(line)
 
-	total = 0
-	for bag in Bags.keys():
-		if Bags[bag].can_hold("shiny gold"):
-			total += 1
-	print(total)
+	print(sum(Bags[bag].can_hold("shiny gold") for bag in Bags.keys()))
 
 	# Part 2 Solution
 	print(Bags["shiny gold"].hold_reqs())
