@@ -50,6 +50,7 @@ Run your copy of the boot code. Immediately before any instruction is executed a
 Your puzzle answer was 2025.
 
 The first half of this puzzle is complete! It provides one gold star: *
+
 --- Part Two ---
 
 After some careful analysis, you believe that exactly one instruction is corrupted.
@@ -99,7 +100,7 @@ def nop(value):
 
 def jmp(value):
 	global ip
-	ip = ip + value - 1
+	ip += value - 1
 
 def acc(value):
 	regs["acc"] += value
@@ -115,13 +116,10 @@ if __name__ == "__main__":
 			line = line.strip().split()
 			mem.append(tuple(line))
 	
-	last = None
-	
 	while True:
 		if ip in seen:
-			print(last)
+			print(regs["acc"])
 			break
-		last = regs["acc"]
 		ops[mem[ip][0]](int(mem[ip][1]))
 		seen.add(ip)
 		ip += 1
@@ -146,7 +144,7 @@ if __name__ == "__main__":
 				if ip in seen:
 					running = False
 				seen.add(ip)
-				if ip == len(trial_mem) and running:
+				if ip == len(mem) and running:
 					print(regs["acc"])
 					exit()
 				ops[trial_mem[ip][0]](int(trial_mem[ip][1]))
