@@ -176,7 +176,7 @@ if __name__ == "__main__":
 	# Factor tree of 19208 is 2*2*2*7*7*7
 	# 
 	# The number of available paths from each link
-	# in the adapter chain, counting up from (0) to (22) is:
+	# in the adapter chain, counting up from (0) to (52) is:
 	# 332113321113211211133211111332110
 	#
 	# Links with only 1 path are represented as 1
