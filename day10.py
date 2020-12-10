@@ -196,12 +196,9 @@ if __name__ == "__main__":
 	path = ""
 	for link in adapters:
 		paths = 0
-		if link + 1 in adapters:
-			paths += 1
-		if link + 2 in adapters:
-			paths += 1
-		if link + 3 in adapters:
-			paths += 1
+		for i in range(1,4):
+			if link+i in adapters:
+				paths += 1
 		path+=str(paths)
 	path = path.replace("332","7").replace("32","4").replace("1",'').replace("0",'')
 	total = 1
