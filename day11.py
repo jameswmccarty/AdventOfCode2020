@@ -252,94 +252,17 @@ def check_seat2(x,y):
 	if (x,y) in floor:
 		return False
 	adjacent = 0
-	# left
-	i = x-1
-	done = False
-	while i >= 0 and not done:
-		if (i,y) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,y) not in floor:
-			done = True
-		i -= 1
-	# diag up left
-	i = x-1
-	j = y-1
-	done = False
-	while i >= 0 and j >= 0 and not done:
-		if (i,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,j) not in floor:
-			done = True
-		i -= 1
-		j -= 1
-	# up
-	j = y-1
-	done = False
-	while j >= 0 and not done:
-		if (x,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (x,j) not in floor:
-			done = True
-		j -= 1
-	# diag up right
-	i = x+1
-	j = y+1
-	done = False
-	while i <= cols and j <= rows and not done:
-		if (i,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,j) not in floor:
-			done = True
-		i += 1
-		j += 1
-	# right
-	i = x+1
-	done = False
-	while i <= cols and not done:
-		if (i,y) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,y) not in floor:
-			done = True
-		i += 1
-	# diag down left
-	i = x-1
-	j = y+1
-	done = False
-	while i >= 0 and j <= rows and not done:
-		if (i,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,j) not in floor:
-			done = True
-		i -= 1
-		j += 1
-	# up
-	j = y+1
-	done = False
-	while j <= rows and not done:
-		if (x,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (x,j) not in floor:
-			done = True
-		j += 1
-	# diag down right
-	i = x+1
-	j = y-1
-	done = False
-	while i <= cols  and j >= 0 and not done:
-		if (i,j) in occupied:
-			adjacent += 1
-			done = True
-		elif (i,j) not in floor:
-			done = True
-		i += 1
-		j -= 1
+	for dx,dy in [(-1,0),(-1,-1),(0,-1),(1,-1),(1,0),(1,1),(0,1),(-1,1)]:
+		px = x + dx
+		py = y + dy
+		while px >= 0 and px <= cols and py >= 0 and py <= rows:
+			if (px,py) in occupied:
+				adjacent += 1
+				break
+			elif (px,py) not in floor:
+				break
+			px = px + dx
+			py = py + dy
 	if (x,y) not in occupied and adjacent == 0:
 		return True
 	if (x,y) in occupied and adjacent >= 5:
