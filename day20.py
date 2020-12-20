@@ -272,7 +272,11 @@ How many # are not part of a sea monster?
 
 """
 
+import math
+
 tiles = dict()
+
+tile_mapping = dict()
 
 class Tile:
 
@@ -323,6 +327,95 @@ def parse(block):
 	tile.build_edge_sets()
 	tiles[num] = tile
 
+def build_tile_layout():
+	corners = []
+	sides   = []
+	fill    = []
+	for tile in tiles.keys():
+		if tiles[tile].match_count() == 2:
+			corners.append(tile)
+		elif tiles[tile].match_count() == 3:
+			sides.append(tile)
+		else:
+			fill.append(tile)
+
+	side_len = int(math.sqrt(len(tiles.keys())))
+	tile_mapping[(0,0)] = corners.pop()
+	last = tile_mapping[(0,0)]
+
+	# top row from left-most corner
+	for i in range(1,side_len-1):
+		poss = tiles[last].matched
+		for value in list(poss):
+			if value in sides:
+				tile_mapping[(i,0)] = value
+				sides.remove(value)
+				last = value
+				break
+	
+	# right-most corner
+	for value in corners:
+		if value in tiles[last].matched:
+			tile_mapping[(side_len-1,0)] = value
+			corners.remove(value)
+			last = value
+			break
+
+	# right side
+	for i in range(1,side_len-1):
+		poss = tiles[last].matched
+		for value in list(poss):
+			if value in sides:
+				tile_mapping[(side_len-1,i)] = value
+				sides.remove(value)
+				last = value
+				break
+
+	# bottom-right corner
+	for value in corners:
+		if value in tiles[last].matched:
+			tile_mapping[(side_len-1,side_len-1)] = value
+			corners.remove(value)
+			last = value
+			break
+
+	# bottom-left corner
+	tile_mapping[(0,side_len-1)] = corners.pop()
+
+	last = tile_mapping[(0,0)]
+	# left side
+	for i in range(1,side_len-1):
+		poss = tiles[last].matched
+		for value in list(poss):
+			if value in sides:
+				tile_mapping[(0,i)] = value
+				sides.remove(value)
+				last = value
+				break
+
+	# bottom row
+	last = tile_mapping[(0,side_len-1)]
+	for i in range(1,side_len-1):
+		poss = tiles[last].matched
+		for value in list(poss):
+			if value in sides:
+				tile_mapping[(i, side_len-1)] = value
+				sides.remove(value)
+				last = value
+				break
+	
+	for i in range(1,side_len-1):
+		last = tile_mapping[(0,i)]
+		for j in range(1,side_len-1):
+			poss = tiles[last].matched
+			for value in list(poss):
+				if value in fill and value in list(tiles[tile_mapping[(j,i-1)]].matched):
+					tile_mapping[(j,i)] = value
+					fill.remove(value)
+					last = value
+					break
+
+
 if __name__ == "__main__":
 
 	# Part 1 Solution
@@ -347,5 +440,8 @@ if __name__ == "__main__":
 			total *= tile
 	print(total)
 
+
 	# Part 2 Solution
+	build_tile_layout()
+	#print(len(tile_mapping), tile_mapping)
 
