@@ -94,6 +94,26 @@ if __name__ == "__main__":
 		count += len(t)
 	print(count)
 
-
 	# Part 2 Solution
+	for item in allergens.keys():
+		for good in safe_foods:
+			allergens[item].discard(good)
 
+	done = False
+	while not done:
+		done = True
+		for item in allergens.keys():
+			if len(allergens[item]) == 1:
+				for a in allergens.keys():
+					if a != item:
+						allergens[a].discard(list(allergens[item])[0])
+		for item in allergens.keys():
+			if len(allergens[item]) != 1:
+				done = False
+	
+	alphabetical = [x for x in allergens.keys()]
+	alphabetical.sort()
+	out = ""
+	for item in alphabetical:
+		out += ''.join(allergens[item])+","
+	print(out[:-1])
