@@ -140,7 +140,6 @@ def compress(tokens):
 			tokens = tokens[1:]
 	return compressed
 
-
 def path_compress(path):
 	# X = NE | SW
 	# Y =  E | W
@@ -210,6 +209,52 @@ def parse(line):
 	else:
 		black_tiles.add(path)
 
+def count_adjacent(path):
+	count = 0
+	start_loc = {"e" : 0, "se": 0, "ne": 0, "w": 0, "nw": 0, "sw": 0}
+	path = [ int(x) for x in path.split(",") ]
+	start_loc['e']  = path[0]
+	start_loc['se'] = path[1]
+	start_loc['ne'] = path[2]
+	start_loc['w']  = path[3]
+	start_loc['nw'] = path[4]
+	start_loc['sw'] = path[5]
+
+	for step in valid_dirs:
+		trial = start_loc.copy()
+		trial[step] += 1
+		trial = path_compress(trial)
+		trial = ','.join(str(x) for x in trial.values())
+		if trial in black_tiles:
+			count += 1
+
+	return count
+
+def new_day():
+	global black_tiles
+	next = set()
+	evaluated = set()
+	for tile in list(black_tiles):
+		count = count_adjacent(tile)
+		if not (count == 0 or count > 2):
+			next.add(tile)
+		for i in range(6):
+			trial = [ int(x) for x in tile.split(",") ]
+			trial[i] += 1
+			start_loc = {"e" : 0, "se": 0, "ne": 0, "w": 0, "nw": 0, "sw": 0}
+			start_loc['e']  = trial[0]
+			start_loc['se'] = trial[1]
+			start_loc['ne'] = trial[2]
+			start_loc['w']  = trial[3]
+			start_loc['nw'] = trial[4]
+			start_loc['sw'] = trial[5]
+			start_loc = path_compress(start_loc)
+			trial = ','.join(str(x) for x in start_loc.values())
+			if trial not in evaluated:
+				evaluated.add(trial)
+				if count_adjacent(trial) == 2:
+					next.add(trial)
+	black_tiles = next
 
 if __name__ == "__main__":
 
@@ -220,3 +265,6 @@ if __name__ == "__main__":
 	print(len(black_tiles))
 
 	# Part 2 Solution
+	for _ in range(100):
+		new_day()
+	print(len(black_tiles))
