@@ -1,0 +1,233 @@
+Individual runtimes
+
+
+--------------
+day01.py
+842016
+9199664
+
+real	0m0.298s
+user	0m0.294s
+sys	0m0.005s
+
+--------------
+day02.py
+550
+634
+
+real	0m0.016s
+user	0m0.014s
+sys	0m0.002s
+
+--------------
+day03.py
+164
+5007658656
+
+real	0m0.014s
+user	0m0.012s
+sys	0m0.002s
+
+--------------
+day04.py
+192
+101
+
+real	0m0.017s
+user	0m0.015s
+sys	0m0.002s
+
+--------------
+day05.py
+818
+559
+
+real	0m0.015s
+user	0m0.013s
+sys	0m0.002s
+
+--------------
+day06.py
+6947
+3398
+
+real	0m0.020s
+user	0m0.018s
+sys	0m0.002s
+
+--------------
+day07.py
+169
+82372
+
+real	0m0.070s
+user	0m0.067s
+sys	0m0.002s
+
+--------------
+day08.py
+2025
+2001
+
+real	0m0.034s
+user	0m0.031s
+sys	0m0.002s
+
+--------------
+day09.py
+1124361034
+129444555
+
+real	0m0.029s
+user	0m0.027s
+sys	0m0.002s
+
+--------------
+day10.py
+2312
+12089663946752
+
+real	0m0.014s
+user	0m0.012s
+sys	0m0.002s
+
+--------------
+day11.py
+2412
+2176
+
+real	0m3.768s
+user	0m3.758s
+sys	0m0.010s
+
+--------------
+day12.py
+1589
+23960
+
+real	0m0.015s
+user	0m0.013s
+sys	0m0.002s
+
+--------------
+day13.py
+207
+530015546283687
+
+real	0m0.013s
+user	0m0.011s
+sys	0m0.002s
+
+--------------
+day14.py
+5875750429995
+5272149590143
+
+real	0m0.247s
+user	0m0.244s
+sys	0m0.003s
+
+--------------
+day15.py
+403
+6823
+
+real	0m16.689s
+user	0m16.523s
+sys	0m0.165s
+
+--------------
+day16.py
+23054
+51240700105297
+
+real	0m0.100s
+user	0m0.098s
+sys	0m0.002s
+
+--------------
+day17.py
+265
+1936
+
+real	0m2.525s
+user	0m2.519s
+sys	0m0.006s
+
+--------------
+day18.py
+3647606140187
+323802071857594
+
+real	0m0.041s
+user	0m0.039s
+sys	0m0.002s
+
+--------------
+day19.py
+126
+282
+
+real	0m0.962s
+user	0m0.957s
+sys	0m0.004s
+
+--------------
+day20.py
+7492183537913
+2323
+
+real	0m1.685s
+user	0m1.679s
+sys	0m0.006s
+
+--------------
+day21.py
+2125
+phc,spnd,zmsdzh,pdt,fqqcnm,lsgqf,rjc,lzvh
+
+real	0m0.016s
+user	0m0.014s
+sys	0m0.002s
+
+--------------
+day22.py
+34664
+32018
+
+real	0m20.986s
+user	0m20.948s
+sys	0m0.036s
+
+--------------
+day23.py
+89372645
+21273394210
+
+real	0m16.201s
+user	0m16.139s
+sys	0m0.057s
+
+--------------
+day24.py
+330
+3711
+
+real	0m43.448s
+user	0m43.369s
+sys	0m0.079s
+
+--------------
+day25.py
+16902792
+
+real	0m2.948s
+user	0m2.943s
+sys	0m0.005s
+
+Total runtime
+
+
+real	1m48.494s
+user	1m48.085s
+sys	0m0.402s
